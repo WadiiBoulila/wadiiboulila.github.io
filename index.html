@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prof. Wadii Boulila — Computer Vision, AI & Trustworthy Systems</title>
+<meta name="description" content="Professor of Computer Science, Director of RIOTU Laboratory at Prince Sultan University. World's Top 2% Scientist. Research in Trustworthy AI, Computer Vision, Remote Sensing, IoT & Edge Intelligence.">
+<meta name="keywords" content="Wadii Boulila, Computer Vision, Deep Learning, AI, Remote Sensing, IoT, Prince Sultan University, RIOTU Lab">
+<meta property="og:title" content="Prof. Wadii Boulila — Academic Portfolio">
+<meta property="og:description" content="World's Top 2% Scientist. 261 publications, 5940+ citations. Research at the intersection of AI, vision, and trustworthy systems.">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Academicons + Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES & RESET
+   ═══════════════════════════════════════════ */
+:root {
+  --bg-primary: #0B0F1A;
+  --bg-secondary: #111827;
+  --bg-card: #161E2E;
+  --bg-card-hover: #1C2740;
+  --accent-gold: #C8A961;
+  --accent-gold-light: #E8D5A0;
+  --accent-blue: #4A90D9;
+  --accent-cyan: #38BDF8;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-subtle: rgba(200,169,97,0.15);
+  --border-medium: rgba(200,169,97,0.3);
+  --gradient-gold: linear-gradient(135deg, #C8A961, #E8D5A0);
+  --gradient-hero: linear-gradient(180deg, #0B0F1A 0%, #111827 100%);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --nav-height: 72px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-gold); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--accent-gold-light); }
+::selection { background: rgba(200,169,97,0.3); color: #fff; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-height);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  background: rgba(11,15,26,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.4s;
+}
+.nav.scrolled { background: rgba(11,15,26,0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--text-primary); letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--accent-gold); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  position: relative; transition: color 0.3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: var(--accent-gold); transition: width 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+/* ═══════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  background: var(--gradient-hero);
+  overflow: hidden;
+  padding: calc(var(--nav-height) + 2rem) 2rem 4rem;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,169,97,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,97,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
+}
+.hero-glow {
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,169,97,0.08) 0%, transparent 70%);
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+.hero-glow-2 {
+  position: absolute; bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(74,144,217,0.06) 0%, transparent 70%);
+  animation: glowPulse 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes glowPulse {
+  from { opacity: 0.5; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 900px; text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: rgba(200,169,97,0.1);
+  border: 1px solid var(--border-medium);
+  border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500; color: var(--accent-gold);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.15s both;
+}
+.hero-name .gold { color: var(--accent-gold); }
+.hero-title {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--text-secondary);
+  font-weight: 400; margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+.hero-areas {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 0.8s ease-out 0.45s both;
+}
+.hero-areas .tag {
+  padding: 0.35rem 0.9rem;
+  background: rgba(200,169,97,0.07);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-size: 0.8rem; color: var(--text-secondary);
+  transition: all 0.3s;
+}
+.hero-areas .tag:hover {
+  background: rgba(200,169,97,0.15);
+  border-color: var(--border-medium);
+  color: var(--accent-gold-light);
+  transform: translateY(-2px);
+}
+.hero-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--border-subtle);
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+.hero-metric {
+  background: var(--bg-card);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: background 0.3s;
+}
+.hero-metric:hover { background: var(--bg-card-hover); }
+.hero-metric .number {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.hero-metric .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.hero-links {
+  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.75s both;
+}
+.hero-links a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+}
+.hero-links a:hover {
+  background: rgba(200,169,97,0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+.hero-links a.primary {
+  background: rgba(200,169,97,0.12);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE
+   ═══════════════════════════════════════════ */
+.section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem); }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--accent-gold);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.section-divider {
+  width: 60px; height: 2px;
+  background: var(--gradient-gold);
+  margin-bottom: 2.5rem;
+}
+.section-alt { background: var(--bg-secondary); }
+
+/* ═══════════════════════════════════════════
+   VISION SECTION
+   ═══════════════════════════════════════════ */
+.vision-text {
+  font-size: 1.15rem; line-height: 1.9;
+  color: var(--text-secondary);
+  max-width: 850px;
+}
+.vision-text strong { color: var(--accent-gold-light); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   CONTRIBUTIONS
+   ═══════════════════════════════════════════ */
+.contrib-grid { display: grid; gap: 1.5rem; }
+.contrib-card {
+  display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem;
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.4s;
+}
+.contrib-card:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.contrib-num {
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--accent-gold);
+  background: rgba(200,169,97,0.1);
+  border-radius: 10px;
+}
+.contrib-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+.contrib-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; }
+.contrib-card .impact {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   PUBLICATIONS
+   ═══════════════════════════════════════════ */
+.pub-overview {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px; background: var(--border-subtle);
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 3rem;
+}
+.pub-stat {
+  background: var(--bg-card); padding: 1.8rem;
+  text-align: center; transition: background 0.3s;
+}
+.pub-stat:hover { background: var(--bg-card-hover); }
+.pub-stat .val {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--accent-gold); line-height: 1;
+}
+.pub-stat .desc {
+  font-size: 0.78rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-top: 0.4rem;
+}
+.pub-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.pub-tab {
+  padding: 0.5rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer; transition: all 0.3s;
+}
+.pub-tab:hover, .pub-tab.active {
+  background: rgba(200,169,97,0.12);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+.pub-list { display: grid; gap: 0.8rem; }
+.pub-item {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 1rem; align-items: start;
+  padding: 1.2rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.pub-item:hover { border-color: var(--border-subtle); background: var(--bg-card-hover); }
+.pub-item .title { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+.pub-item .venue { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; }
+.pub-item .if-badge {
+  padding: 0.3rem 0.7rem;
+  background: rgba(200,169,97,0.1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem; font-weight: 500;
+  color: var(--accent-gold);
+  white-space: nowrap;
+}
+.pub-item.starred { border-left: 3px solid var(--accent-gold); }
+
+/* ═══════════════════════════════════════════
+   AWARDS
+   ═══════════════════════════════════════════ */
+.awards-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+.award-card {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: all 0.3s;
+}
+.award-card:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+.award-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(200,169,97,0.1);
+  border-radius: 8px;
+  color: var(--accent-gold);
+  font-size: 1rem;
+}
+.award-card h4 { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
+.award-card .year { font-size: 0.78rem; color: var(--accent-gold); font-weight: 500; }
+.award-card p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* ═══════════════════════════════════════════
+   FUNDING TABLE
+   ═══════════════════════════════════════════ */
+.funding-summary {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border-subtle);
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.funding-stat {
+  background: var(--bg-card); padding: 1.5rem;
+  text-align: center;
+}
+.funding-stat .val {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 700;
+  color: var(--accent-gold);
+}
+.funding-stat .desc {
+  font-size: 0.75rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.funding-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.funding-table th {
+  padding: 0.8rem 1rem;
+  font-size: 0.72rem; font-weight: 600;
+  color: var(--accent-gold);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  text-align: left;
+  border-bottom: 1px solid var(--border-medium);
+}
+.funding-table td {
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem; color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.funding-table tr:hover td { background: var(--bg-card); }
+.funding-table .role-pi {
+  color: var(--accent-gold); font-weight: 600;
+}
+.funding-table .amount {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════
+   SUPERVISION / KEYNOTES
+   ═══════════════════════════════════════════ */
+.supervision-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border-subtle);
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.keynote-list { display: grid; gap: 1rem; }
+.keynote-card {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.keynote-card:hover { border-color: var(--border-medium); }
+.keynote-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+.keynote-card .venue { font-size: 0.85rem; color: var(--text-muted); }
+.keynote-card .year-badge {
+  padding: 0.35rem 0.9rem;
+  background: rgba(200,169,97,0.1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent-gold);
+  align-self: start;
+}
+
+/* ═══════════════════════════════════════════
+   BOOKS
+   ═══════════════════════════════════════════ */
+.books-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+.book-card {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.book-card:hover { border-color: var(--border-medium); transform: translateY(-2px); }
+.book-card .publisher {
+  font-size: 0.72rem; color: var(--accent-gold);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.book-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.book-card .year { font-size: 0.82rem; color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════
+   CONTACT / FOOTER
+   ═══════════════════════════════════════════ */
+.contact-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem; margin-bottom: 3rem;
+}
+.contact-card {
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.contact-card:hover { border-color: var(--border-medium); transform: translateY(-3px); }
+.contact-card i {
+  font-size: 1.5rem; color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+.contact-card h4 { font-size: 0.92rem; margin-bottom: 0.3rem; }
+.contact-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.82rem; color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border-subtle); }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+  .contrib-card { grid-template-columns: 1fr; }
+  .contrib-num { width: 40px; height: 40px; font-size: 1.1rem; }
+  .funding-summary, .supervision-stats { grid-template-columns: repeat(2, 1fr); }
+  .pub-item { grid-template-columns: 1fr; }
+  .pub-item .if-badge { justify-self: start; }
+  .keynote-card { grid-template-columns: 1fr; }
+  .keynote-card .year-badge { justify-self: start; }
+  .funding-table { font-size: 0.8rem; }
+  .funding-table th, .funding-table td { padding: 0.6rem 0.5rem; }
+}
+@media (max-width: 480px) {
+  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+  .awards-grid { grid-template-columns: 1fr; }
+  .books-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ NAVIGATION ═══════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">W<span>.</span> Boulila</div>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="nav-links">
+    <a href="#vision">Vision</a>
+    <a href="#contributions">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#awards">Awards</a>
+    <a href="#funding">Funding</a>
+    <a href="#keynotes">Talks</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> World's Top 2% Scientist — Stanford / Elsevier, 2022–2025</div>
+    <h1 class="hero-name">Wadii <span class="gold">Boulila</span></h1>
+    <p class="hero-title">Professor of Computer Science &bull; Director, RIOTU Laboratory<br>Prince Sultan University, Riyadh, Saudi Arabia</p>
+    <div class="hero-areas">
+      <span class="tag">Trustworthy AI</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Remote Sensing</span>
+      <span class="tag">IoT & Edge Intelligence</span>
+      <span class="tag">LLMs & NLP</span>
+      <span class="tag">Uncertainty Modeling</span>
+      <span class="tag">Data Fusion</span>
+    </div>
+    <div class="hero-metrics">
+      <div class="hero-metric">
+        <div class="number">261</div>
+        <div class="label">Publications</div>
+      </div>
+      <div class="hero-metric">
+        <div class="number">5,940+</div>
+        <div class="label">Citations</div>
+      </div>
+      <div class="hero-metric">
+        <div class="number">107</div>
+        <div class="label">Q1 Journals</div>
+      </div>
+      <div class="hero-metric">
+        <div class="number">11</div>
+        <div class="label">Ph.D. Students</div>
+      </div>
+    </div>
+    <div class="hero-links">
+      <a href="https://scholar.google.com/citations?user=ubl6WkoAAAAJ" class="primary" target="_blank"><i class="ai ai-google-scholar"></i> Google Scholar</a>
+      <a href="https://www.scopus.com/authid/detail.uri?authorId=26633640200" target="_blank"><i class="ai ai-scopus"></i> Scopus</a>
+      <a href="https://orcid.org/" target="_blank"><i class="ai ai-orcid"></i> ORCID</a>
+      <a href="https://www.linkedin.com/in/wadii-boulila/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="mailto:wboulila@psu.edu.sa"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ VISION ═══════════════════════════════════════════ -->
+<section class="section" id="vision">
+  <div class="section-inner reveal">
+    <div class="section-label">Research Vision & Trajectory</div>
+    <h2 class="section-title">Enabling Intelligent Systems That<br>Operate Reliably Under Uncertainty</h2>
+    <div class="section-divider"></div>
+    <p class="vision-text">
+      My research programme builds from foundational contributions in <strong>geospatial uncertainty modeling and knowledge discovery</strong> (Ph.D., Rennes&nbsp;1; HDR, Manouba) through <strong>scalable deep learning for remote sensing and IoT security</strong> (distributed CNN architectures, privacy-preserving pipelines, federated learning) toward a current and forward-looking agenda in <strong>agentic AI, edge intelligence, and trustworthy autonomous systems</strong>.
+    </p>
+    <br>
+    <p class="vision-text">
+      The unifying thread is enabling intelligent systems to operate reliably under uncertainty, at scale, and with privacy guarantees — spanning environmental monitoring, precision agriculture, healthcare, and defense. As Director of the RIOTU Laboratory, I am building the research infrastructure and international collaborations needed to lead large-scale, multi-investigator programmes in <strong>decentralized agentic intelligence for IoT and unmanned systems</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SIGNATURE CONTRIBUTIONS ═══════════════════════════════════════════ -->
+<section class="section section-alt" id="contributions">
+  <div class="section-inner">
+    <div class="section-label reveal">Signature Research Contributions</div>
+    <h2 class="section-title reveal">Five Lines of Work That Changed<br>How We Approach These Problems</h2>
+    <div class="section-divider reveal"></div>
+    <div class="contrib-grid">
+
+      <div class="contrib-card reveal">
+        <div class="contrib-num">1</div>
+        <div>
+          <h3>Uncertainty-Aware Geospatial Intelligence</h3>
+          <p>Developed a principled framework for propagating and reducing epistemic/aleatory uncertainties in land cover change models. Published in IJAEOG (IF 7.5), Ecological Informatics, KAIS, J.&nbsp;Comp.&nbsp;Science.</p>
+          <div class="impact"><i class="fas fa-arrow-right"></i> &nbsp;Spawned 3 doctoral theses extending this methodology</div>
+        </div>
+      </div>
+
+      <div class="contrib-card reveal">
+        <div class="contrib-num">2</div>
+        <div>
+          <h3>Privacy-Preserving Deep Learning for Satellite & Health Imagery</h3>
+          <p>Pioneered hybrid differential-privacy + federated learning pipelines for VHR satellite classification and COVID-19 chest X-ray diagnosis — proving privacy guarantees need not degrade accuracy.</p>
+          <div class="impact"><i class="fas fa-arrow-right"></i> &nbsp;Directly applicable to defense and health sectors</div>
+        </div>
+      </div>
+
+      <div class="contrib-card reveal">
+        <div class="contrib-num">3</div>
+        <div>
+          <h3>Distributed Deep Learning at Scale</h3>
+          <p>Designed RS-DCNN, a distributed CNN overcoming single-machine memory limits (Comp.&nbsp;Elect.&nbsp;Agriculture, IF 8.6), complemented by CNN-LSTM urban expansion prediction (Ecol.&nbsp;Informatics, IF 5.9).</p>
+          <div class="impact"><i class="fas fa-arrow-right"></i> &nbsp;Both among top-cited papers in their respective journals</div>
+        </div>
+      </div>
+
+      <div class="contrib-card reveal">
+        <div class="contrib-num">4</div>
+        <div>
+          <h3>AI-Driven Precision Agriculture: Red Palm Weevil Detection</h3>
+          <p>Created the first deep-learning system for early RPW detection via acoustic signals (CEA, IF 8.6) and UAV-based palm detection. Saudi patent (SAIP SA 18938 B1, 2024).</p>
+          <div class="impact"><i class="fas fa-arrow-right"></i> &nbsp;Under commercial field evaluation — addressing a pest costing hundreds of millions annually</div>
+        </div>
+      </div>
+
+      <div class="contrib-card reveal">
+        <div class="contrib-num">5</div>
+        <div>
+          <h3>Field-Shaping Surveys as Standard References</h3>
+          <p>Highly cited surveys in Computer Science Review (IF 12.9) on IoT + Big Data for environment, DL for smart cities, graph DL for remote sensing, and LLMs + diffusion models (IF 12.7).</p>
+          <div class="impact"><i class="fas fa-arrow-right"></i> &nbsp;Collectively among the most cited papers in their journals worldwide</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PUBLICATIONS ═══════════════════════════════════════════ -->
+<section class="section" id="publications">
+  <div class="section-inner">
+    <div class="section-label reveal">Publications</div>
+    <h2 class="section-title reveal">261 Publications. 107 in Q1 Journals.</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="pub-overview reveal">
+      <div class="pub-stat"><div class="val">152</div><div class="desc">Journal Articles</div></div>
+      <div class="pub-stat"><div class="val">101</div><div class="desc">Conference Papers</div></div>
+      <div class="pub-stat"><div class="val">5</div><div class="desc">Books</div></div>
+      <div class="pub-stat"><div class="val">2</div><div class="desc">Patents</div></div>
+      <div class="pub-stat"><div class="val">6</div><div class="desc">Sole Author</div></div>
+      <div class="pub-stat"><div class="val">29</div><div class="desc">First Author</div></div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin-bottom:1rem;" class="reveal">Selected High-Impact Publications <span style="font-size:0.8rem;color:var(--accent-gold);">★ = Representative contribution</span></h3>
+    <div class="pub-list reveal">
+
+      <div class="pub-item starred"><div><div class="title">Big Data and IoT Based Applications in Environmental Field: A Systematic Review</div><div class="venue">Computer Science Review &bull; Hajjaji, <strong>Boulila</strong>, et al., 2021</div></div><div class="if-badge">IF 12.9</div></div>
+
+      <div class="pub-item starred"><div><div class="title">RS-DCNN: Distributed CNNs for Big Remote-Sensing Image Classification</div><div class="venue">Computers and Electronics in Agriculture &bull; <strong>Boulila</strong>, et al., 2021</div></div><div class="if-badge">IF 8.6</div></div>
+
+      <div class="pub-item starred"><div><div class="title">Early Detection of Red Palm Weevil via Acoustic Deep Learning</div><div class="venue">Computers and Electronics in Agriculture &bull; <strong>Boulila</strong>, et al., 2023</div></div><div class="if-badge">IF 8.6</div></div>
+
+      <div class="pub-item"><div><div class="title">Finger Pinching and Imagination Classification: CNN Fusion for IoMT-Enabled BCI</div><div class="venue">Information Fusion &bull; Varone, <strong>Boulila</strong>, et al., 2024</div></div><div class="if-badge">IF 18.6</div></div>
+
+      <div class="pub-item"><div><div class="title">Enhanced Multimodal Speech Processing for Healthcare Applications</div><div class="venue">IEEE J. Selected Topics in Signal Processing &bull; Lv, <strong>Boulila</strong>, et al., 2025</div></div><div class="if-badge">IF 13.7</div></div>
+
+      <div class="pub-item"><div><div class="title">Graph-based Deep Learning for Remote Sensing: Techniques, Taxonomy, and Applications</div><div class="venue">Computer Science Review &bull; Khazri, <strong>Boulila</strong>, Farah, 2023</div></div><div class="if-badge">IF 12.9</div></div>
+
+      <div class="pub-item"><div><div class="title">Fusing LLMs and Diffusion Models: A Comprehensive Survey</div><div class="venue">Computer Science Review &bull; Benjdira, <strong>Boulila</strong>, et al., 2025</div></div><div class="if-badge">IF 12.7</div></div>
+
+      <div class="pub-item"><div><div class="title">Data-Emergency-Aware Scheduling in Computer Networks</div><div class="venue">IEEE Trans. Industrial Informatics &bull; Jemmali, et al., 2022</div></div><div class="if-badge">IF 11.6</div></div>
+
+      <div class="pub-item"><div><div class="title">Dehazing-DiffGAN for Remote Sensing Image Dehazing</div><div class="venue">IEEE Trans. Geoscience and Remote Sensing &bull; Ali, <strong>Boulila</strong>, et al., 2025</div></div><div class="if-badge">IF 8.6</div></div>
+
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:0.9rem;color:var(--text-muted);" class="reveal">Full publication list available on <a href="https://scholar.google.com/citations?user=ubl6WkoAAAAJ">Google Scholar</a> and <a href="https://dblp.org/pid/05/8059.html">DBLP</a>.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ AWARDS ═══════════════════════════════════════════ -->
+<section class="section section-alt" id="awards">
+  <div class="section-inner">
+    <div class="section-label reveal">Honors & Awards</div>
+    <h2 class="section-title reveal">Recognized Globally and Nationally</h2>
+    <div class="section-divider reveal"></div>
+    <div class="awards-grid">
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-globe"></i></div><div><h4>World's Top 2% Scientist</h4><div class="year">2022, 2023, 2024, 2025</div><p>Stanford University / Elsevier — four consecutive years</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-passport"></i></div><div><h4>Premium Residency — Exceptional Talents</h4><div class="year">2024</div><p>Kingdom of Saudi Arabia</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-award"></i></div><div><h4>Global Talent Endorsement</h4><div class="year">2022</div><p>University of Manchester, UK</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-trophy"></i></div><div><h4>Best Young Researcher in CS, Tunisia</h4><div class="year">2021</div><p>Beit El Hikma — Tunisian Academy of Sciences</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-star"></i></div><div><h4>Best Researcher (All Fields) + Most Cited</h4><div class="year">2021, 2022</div><p>University of Manouba, Tunisia</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-flask"></i></div><div><h4>Research Excellence + Highest IF Lab Award</h4><div class="year">2023</div><p>Prince Sultan University</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-chalkboard-teacher"></i></div><div><h4>Outstanding Teacher Award</h4><div class="year">2025</div><p>CCIS, Prince Sultan University</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-camera"></i></div><div><h4>2nd Place, CVPR 2025 Night Photography</h4><div class="year">2025</div><p>Top-ranked AI conference worldwide</p></div></div>
+
+      <div class="award-card reveal"><div class="award-icon"><i class="fas fa-robot"></i></div><div><h4>2nd Place, ROSHN Hackathon — AI & Automation</h4><div class="year">2025</div><p>1,800 participants</p></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FUNDING ═══════════════════════════════════════════ -->
+<section class="section" id="funding">
+  <div class="section-inner">
+    <div class="section-label reveal">Research Funding</div>
+    <h2 class="section-title reveal">Sustained Competitive Funding</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="funding-summary reveal">
+      <div class="funding-stat"><div class="val">1.58M</div><div class="desc">SAR Total (~$422K USD)</div></div>
+      <div class="funding-stat"><div class="val">4 PI</div><div class="desc">As Principal Investigator</div></div>
+      <div class="funding-stat"><div class="val">6</div><div class="desc">Funding Agencies</div></div>
+    </div>
+
+    <div style="overflow-x:auto;" class="reveal">
+    <table class="funding-table">
+      <thead>
+        <tr><th>Role</th><th>Project</th><th>Funder</th><th>SAR</th><th>Period</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="role-pi">Co-PI</td><td>AI Copyright Protection for Publishing Houses</td><td>Min. Culture (KSA)</td><td class="amount">35K</td><td>2026–27</td></tr>
+        <tr><td class="role-pi">PI</td><td>QuadroRL: Search & Rescue Quadrupeds</td><td>PSU Seed</td><td class="amount">30K</td><td>2025–26</td></tr>
+        <tr><td class="role-pi">PI</td><td>SkyHarvest: Palm Analytics via Domain Adaptation</td><td>PSU Seed</td><td class="amount">30K</td><td>2023–24</td></tr>
+        <tr><td>Co-PI</td><td>Terrain-Aided UAV Navigation in GPS-Denied Env.</td><td>PSU Defense Ctr.</td><td class="amount">300K</td><td>2023–24</td></tr>
+        <tr><td class="role-pi">PI</td><td>ServePalms: Smart Palm Tracking & Disease Detection</td><td>PSU Seed</td><td class="amount">30K</td><td>2022–23</td></tr>
+        <tr><td>Co-PI</td><td>Smart Healthcare for Brain Disorders</td><td>MoE (KSA)</td><td class="amount">350K</td><td>2021–23</td></tr>
+        <tr><td>Co-PI</td><td>SmartWater: Real-Time IoT Water Monitoring</td><td>MoE (KSA)</td><td class="amount">350K</td><td>2020–22</td></tr>
+        <tr><td class="role-pi">PI</td><td>COVID-19 Respiratory Disorder Detection</td><td>Taibah Univ.</td><td class="amount">200K</td><td>2020–21</td></tr>
+        <tr><td>Co-PI</td><td>Health-Related Rumor Detection for COVID-19</td><td>Taibah Univ.</td><td class="amount">200K</td><td>2020–21</td></tr>
+        <tr><td>Co-PI</td><td>Secure Pop-Up Networks</td><td>GCRF/SFC (UK)</td><td class="amount">40K</td><td>2019</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ KEYNOTES ═══════════════════════════════════════════ -->
+<section class="section section-alt" id="keynotes">
+  <div class="section-inner">
+    <div class="section-label reveal">Invited & Keynote Addresses</div>
+    <h2 class="section-title reveal">Speaking Across Six Countries</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="keynote-list">
+      <div class="keynote-card reveal"><div><h4>"Bridging the AI Implementation Gap: From Real Needs to Scaled Impact"</h4><div class="venue">Digital Government Authority Workshop, Saudi Arabia</div></div><div class="year-badge">2026</div></div>
+      <div class="keynote-card reveal"><div><h4>"From Foundations to Frontiers: Agentic Intelligence for Real-World Systems"</h4><div class="venue">International Multi-Conference OCTA'2025, Tunisia</div></div><div class="year-badge">2025</div></div>
+      <div class="keynote-card reveal"><div><h4>"AI-Driven Precision Agriculture and Environmental Intelligence"</h4><div class="venue">SmartTech 2025, Tunisia</div></div><div class="year-badge">2025</div></div>
+      <div class="keynote-card reveal"><div><h4>"Deep Learning at Scale for Remote Sensing and IoT"</h4><div class="venue">Distinguished Speaker, Jinan Univ. & Jiangsu Univ. of Sci. & Tech., China</div></div><div class="year-badge">2025</div></div>
+      <div class="keynote-card reveal"><div><h4>"Trustworthy AI: Privacy, Uncertainty, and Robustness"</h4><div class="venue">U. of Technology Bahrain; U. of Sharjah Alumni Conference, UAE</div></div><div class="year-badge">2025</div></div>
+      <div class="keynote-card reveal"><div><h4>"Big Remote Sensing Data Analytics and Uncertainty Modeling"</h4><div class="venue">Invited Speaker, KAUST, Saudi Arabia</div></div><div class="year-badge">2022</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ BOOKS ═══════════════════════════════════════════ -->
+<section class="section" id="books">
+  <div class="section-inner">
+    <div class="section-label reveal">Books</div>
+    <h2 class="section-title reveal">5 Books with Leading Publishers</h2>
+    <div class="section-divider reveal"></div>
+    <div class="books-grid">
+      <div class="book-card reveal"><div class="publisher">Springer · 2026</div><h4>The Rise of Agentic Intelligence: From Theory to Real-World Applications</h4><div class="year">Boulila, W., Ammar, A., Abdelkader, M., et al.</div></div>
+      <div class="book-card reveal"><div class="publisher">Elsevier · 2025</div><h4>Edge Intelligence: Advanced Deep Transfer Learning for IoT Security</h4><div class="year">Ahmad, J., Latif, S., Boulila, W., et al.</div></div>
+      <div class="book-card reveal"><div class="publisher">Springer · 2025</div><h4>Generative AI and Large Language Models</h4><div class="year">Koubaa, A., Ammar, A., Ghouti, L., Boulila, W., et al.</div></div>
+      <div class="book-card reveal"><div class="publisher">Springer · 2024</div><h4>Decision Making & Security Risk Management for IoT Environments</h4><div class="year">Boulila, W., Ahmad, J., Koubaa, A., et al.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CONTACT ═══════════════════════════════════════════ -->
+<section class="section section-alt" id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Open to Collaboration</h2>
+    <div class="section-divider reveal"></div>
+    <div class="contact-grid">
+      <a href="mailto:wboulila@psu.edu.sa" class="contact-card reveal" style="color:inherit;"><i class="fas fa-envelope" style="display:block;"></i><h4>Email</h4><p>wboulila@psu.edu.sa</p></a>
+      <a href="https://scholar.google.com/citations?user=ubl6WkoAAAAJ" target="_blank" class="contact-card reveal" style="color:inherit;"><i class="ai ai-google-scholar" style="display:block;"></i><h4>Google Scholar</h4><p>Full publication record</p></a>
+      <a href="https://www.linkedin.com/in/wadii-boulila/" target="_blank" class="contact-card reveal" style="color:inherit;"><i class="fab fa-linkedin" style="display:block;"></i><h4>LinkedIn</h4><p>Professional network</p></a>
+      <a href="https://ric.psu.edu.sa/riotu/" target="_blank" class="contact-card reveal" style="color:inherit;"><i class="fas fa-flask" style="display:block;"></i><h4>RIOTU Lab</h4><p>ric.psu.edu.sa/riotu</p></a>
+    </div>
+    <div style="text-align:center;margin-top:1rem;" class="reveal">
+      <p style="font-size:0.95rem;color:var(--text-secondary);">Prince Sultan University &bull; Riyadh, Saudi Arabia &bull; +966 56 802 1005</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER ═══════════════════════════════════════════ -->
+<footer class="footer">
+  <p>&copy; 2026 Wadii Boulila. IEEE Senior Member &bull; SFHEA &bull; AAAI &bull; ACM</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════ SCRIPTS ═══════════════════════════════════════════ -->
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 150) current = s.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+
+// Animate numbers on scroll
+function animateNumber(el, target, duration = 1500) {
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString() + (el.dataset.suffix || '');
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString() + (el.dataset.suffix || '');
+  };
+  requestAnimationFrame(step);
+}
+
+const metricObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.textContent.replace(/[^0-9]/g, '');
+      const num = parseInt(text);
+      if (num > 0) animateNumber(el, num);
+      metricObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.hero-metric .number, .pub-stat .val, .funding-stat .val').forEach(el => {
+  if (/^\d/.test(el.textContent.replace(/[,+~]/g, ''))) metricObserver.observe(el);
+});
+</script>
+
+</body>
+</html>
