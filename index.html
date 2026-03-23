@@ -47,12 +47,21 @@ a:hover { color: var(--accent-gold-light); }
 .nav.scrolled { background: rgba(11,15,26,0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
 .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); }
 .nav-logo span { color: var(--accent-gold); }
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; position: relative; transition: color 0.3s; }
+.nav-links { display: flex; gap: 1.6rem; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; position: relative; transition: color 0.3s; }
 .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--accent-gold); transition: width 0.3s; }
 .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-more { position: relative; }
+.nav-more > a::after { display: none; }
+.nav-more-menu { display: none; position: absolute; top: calc(100% + 12px); right: 0; min-width: 240px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0.6rem 0; box-shadow: 0 12px 40px rgba(0,0,0,0.4); z-index: 200; }
+.nav-more:hover .nav-more-menu { display: block; }
+.nav-more-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; }
+.nav-more-menu a::after { display: none; }
+.nav-more-menu a:hover { color: var(--accent-gold); background: rgba(200,169,97,0.06); }
 .nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+.hero-memberships { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease-out 0.35s both; }
+.hero-memberships .mbadge { padding: 0.3rem 0.8rem; background: rgba(200,169,97,0.08); border: 1px solid var(--border-subtle); border-radius: 6px; font-size: 0.72rem; font-weight: 600; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* HERO */
 .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: linear-gradient(180deg, #0B0F1A, #111827); overflow: hidden; padding: calc(var(--nav-height) + 2rem) 2rem 4rem; }
@@ -200,8 +209,10 @@ a:hover { color: var(--accent-gold-light); }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav-links { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border-subtle); }
+  .nav-links { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 2rem; gap: 1rem; border-bottom: 1px solid var(--border-subtle); max-height: 80vh; overflow-y: auto; }
   .nav-links.open { display: flex; }
+  .nav-more-menu { display: contents; }
+  .nav-more > a { display: none; }
   .nav-toggle { display: block; }
   .hero-metrics { grid-template-columns: repeat(2, 1fr); }
   .contrib-card { grid-template-columns: 1fr; }
@@ -218,7 +229,27 @@ a:hover { color: var(--accent-gold-light); }
   <div class="nav-logo">W<span>.</span> Boulila</div>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
   <div class="nav-links">
-    <a href="#vision">Vision</a><a href="#contributions">Research</a><a href="#publications">Publications</a><a href="#awards">Awards</a><a href="#funding">Funding</a><a href="#keynotes">Talks</a><a href="#supervision">Students</a><a href="#contact">Contact</a>
+    <a href="#vision">Vision</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#contributions">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#awards">Awards</a>
+    <a href="#funding">Funding</a>
+    <a href="#keynotes">Talks</a>
+    <a href="#supervision">Students</a>
+    <div class="nav-more">
+      <a href="#">More <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:0.2rem"></i></a>
+      <div class="nav-more-menu">
+        <a href="#education">Education</a>
+        <a href="#leadership">Academic Leadership</a>
+        <a href="#books">Books</a>
+        <a href="#editorial">Editorial Service</a>
+        <a href="#industry">Industry Impact</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#memberships">Affiliations</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -229,6 +260,12 @@ a:hover { color: var(--accent-gold-light); }
     <div class="hero-badge"><span class="dot"></span> World's Top 2% Scientist — Stanford / Elsevier, 2022–2025</div>
     <h1 class="hero-name">Wadii <span class="gold">Boulila</span></h1>
     <p class="hero-title">Professor of Computer Science &bull; Director, RIOTU Laboratory<br>Prince Sultan University, Riyadh, Saudi Arabia</p>
+    <div class="hero-memberships">
+      <span class="mbadge">IEEE Senior Member</span>
+      <span class="mbadge">SFHEA</span>
+      <span class="mbadge">AAAI</span>
+      <span class="mbadge">ACM</span>
+    </div>
     <div class="hero-areas">
       <span class="tag">Trustworthy AI</span><span class="tag">Computer Vision</span><span class="tag">Remote Sensing</span><span class="tag">IoT &amp; Edge Intelligence</span><span class="tag">LLMs &amp; NLP</span><span class="tag">Uncertainty Modeling</span><span class="tag">Data Fusion</span>
     </div>
@@ -286,7 +323,7 @@ a:hover { color: var(--accent-gold-light); }
     <div class="stat-cell"><div class="val">30</div><div class="desc">1st Author</div></div>
     <div class="stat-cell"><div class="val">60</div><div class="desc">Last Author</div></div>
   </div>
-  <div class="pub-group reveal">IF ≥ 10 (Selected) <span style="font-size:0.85rem;color:var(--accent-gold);font-weight:400;"></span></div>
+  <div class="pub-group reveal">IF ≥ 10 (Selected)</div>
   <div class="reveal">
     <div class="pub-item starred"><div><div class="title">DL &amp; IoT for Smart Environments: Systematic Review</div><div class="venue">Comp. Sci. Rev. · Attitallah, et al., 2020</div></div><div class="if-badge">IF 12.9</div></div>
     <div class="pub-item starred"><div><div class="title">Big Data and IoT for Environmental Field</div><div class="venue">Comp. Sci. Rev. · Hajjaji, <b>Boulila</b>, et al., 2021</div></div><div class="if-badge">IF 12.9</div></div>
@@ -295,8 +332,8 @@ a:hover { color: var(--accent-gold-light); }
     <div class="pub-item"><div><div class="title">CNN Fusion for IoMT-Enabled BCI</div><div class="venue">Information Fusion · Varone, <b>Boulila</b>, et al., 2024</div></div><div class="if-badge">IF 18.6</div></div>
     <div class="pub-item"><div><div class="title">Enhanced Multimodal Speech for Healthcare</div><div class="venue">IEEE JSTSP · Lv, <b>Boulila</b>, et al., 2025</div></div><div class="if-badge">IF 13.7</div></div>
     <div class="pub-item"><div><div class="title">Fusing LLMs and Diffusion Models</div><div class="venue">Comp. Sci. Rev. · Benjdira, et al., 2025</div></div><div class="if-badge">IF 12.7</div></div>
-    <div class="pub-item"><div><div class="title">Multimodal GNN for Consumer Data</div><div class="venue">IEEE TCE · Sundaram, el al. 2025</div></div><div class="if-badge">IF 10.9</div></div>
-<div class="pub-item"><div><div class="title">Privacy-Enhanced Pneumonia Diagnosis</div><div class="venue">IEEE TCE · Siddique, <b>Boulila</b>, et al., 2025</div></div><div class="if-badge">IF 10.9</div></div>
+    <div class="pub-item"><div><div class="title">Multimodal GNN for Consumer Data</div><div class="venue">IEEE TCE · Sundaram, et al., 2025</div></div><div class="if-badge">IF 10.9</div></div>
+    <div class="pub-item"><div><div class="title">Privacy-Enhanced Pneumonia Diagnosis</div><div class="venue">IEEE TCE · Siddique, <b>Boulila</b>, et al., 2025</div></div><div class="if-badge">IF 10.9</div></div>
     <div class="pub-item"><div><div class="title">GNSS-Denied UAV Navigation</div><div class="venue">Satellite Navigation · Jarraya, et al., 2025</div></div><div class="if-badge">IF 10.1</div></div>
   </div>
   <div class="pub-group reveal">IF 7–10 (Selected)</div>
@@ -342,7 +379,7 @@ a:hover { color: var(--accent-gold-light); }
   <h2 class="section-title reveal">Sustained Competitive Funding</h2>
   <div class="section-divider reveal"></div>
   <div class="stats-bar reveal" style="grid-template-columns:repeat(3,1fr)">
-    <div class="stat-cell"><div class="val">1,58M</div><div class="desc">SAR Total (~$422K)</div></div>
+    <div class="stat-cell"><div class="val">1.58M</div><div class="desc">SAR Total (~$422K)</div></div>
     <div class="stat-cell"><div class="val">4 as PI</div><div class="desc">Principal Investigator</div></div>
     <div class="stat-cell"><div class="val">7</div><div class="desc">Funding Agencies</div></div>
   </div>
@@ -404,7 +441,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- EDUCATION -->
-<section class="section section-alt"><div class="section-inner">
+<section class="section section-alt" id="education"><div class="section-inner">
   <div class="section-label reveal">Education</div>
   <h2 class="section-title reveal">Academic Foundation</h2>
   <div class="section-divider reveal"></div>
@@ -418,7 +455,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- LEADERSHIP -->
-<section class="section"><div class="section-inner">
+<section class="section" id="leadership"><div class="section-inner">
   <div class="section-label reveal">Academic Leadership</div>
   <h2 class="section-title reveal">Building Research Infrastructure</h2>
   <div class="section-divider reveal"></div>
@@ -429,7 +466,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- BOOKS -->
-<section class="section section-alt"><div class="section-inner">
+<section class="section section-alt" id="books"><div class="section-inner">
   <div class="section-label reveal">Books</div>
   <h2 class="section-title reveal">5 Books with Leading Publishers</h2>
   <div class="section-divider reveal"></div>
@@ -442,7 +479,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- EDITORIAL -->
-<section class="section"><div class="section-inner">
+<section class="section" id="editorial"><div class="section-inner">
   <div class="section-label reveal">Editorial &amp; Conference Service</div>
   <h2 class="section-title reveal">Shaping the Field</h2>
   <div class="section-divider reveal"></div>
@@ -456,7 +493,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- TEACHING -->
-<section class="section section-alt"><div class="section-inner">
+<section class="section section-alt" id="teaching"><div class="section-inner">
   <div class="section-label reveal">Teaching</div>
   <h2 class="section-title reveal">Computational Thinking at Every Level</h2>
   <div class="section-divider reveal"></div>
@@ -469,7 +506,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- INDUSTRY -->
-<section class="section"><div class="section-inner">
+<section class="section" id="industry"><div class="section-inner">
   <div class="section-label reveal">Industry &amp; Translational Impact</div>
   <h2 class="section-title reveal">15+ Years of Real-World Deployment</h2>
   <div class="section-divider reveal"></div>
@@ -480,7 +517,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- CERTIFICATIONS -->
-<section class="section section-alt"><div class="section-inner">
+<section class="section section-alt" id="certifications"><div class="section-inner">
   <div class="section-label reveal">Professional Certifications</div>
   <h2 class="section-title reveal">Industry Credentials</h2>
   <div class="section-divider reveal"></div>
@@ -494,7 +531,7 @@ a:hover { color: var(--accent-gold-light); }
 </div></section>
 
 <!-- MEMBERSHIPS -->
-<section class="section"><div class="section-inner">
+<section class="section" id="memberships"><div class="section-inner">
   <div class="section-label reveal">International Affiliations &amp; Memberships</div>
   <h2 class="section-title reveal">Global Academic Network</h2>
   <div class="section-divider reveal"></div>
@@ -531,9 +568,9 @@ a:hover { color: var(--accent-gold-light); }
 
 <script>
 const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
-const secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav-links a');
+const secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav-links a[href^="#"]');
 window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c))});
-document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(l=>l.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
 const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 function animNum(el,t,d=1500){let s=0;const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3),txt=el.textContent,sf=txt.includes('+')?'+':'';el.textContent=Math.floor(e*t).toLocaleString()+sf;if(p<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString()+sf};requestAnimationFrame(step)}
