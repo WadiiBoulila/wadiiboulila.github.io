@@ -47,18 +47,20 @@ a:hover { color: var(--accent-gold-light); }
 .nav.scrolled { background: rgba(11,15,26,0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
 .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); }
 .nav-logo span { color: var(--accent-gold); }
-.nav-links { display: flex; gap: 1.6rem; align-items: center; }
-.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; position: relative; transition: color 0.3s; }
-.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--accent-gold); transition: width 0.3s; }
-.nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
-.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-.nav-more { position: relative; }
-.nav-more > a::after { display: none; }
-.nav-more-menu { display: none; position: absolute; top: calc(100% + 12px); right: 0; min-width: 240px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0.6rem 0; box-shadow: 0 12px 40px rgba(0,0,0,0.4); z-index: 200; }
-.nav-more:hover .nav-more-menu { display: block; }
-.nav-more-menu a { display: block; padding: 0.6rem 1.2rem; font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; }
-.nav-more-menu a::after { display: none; }
-.nav-more-menu a:hover { color: var(--accent-gold); background: rgba(200,169,97,0.06); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links > a, .nav-dd > .nav-dd-trigger { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; position: relative; transition: color 0.3s; cursor: pointer; background: none; border: none; font-family: var(--font-body); padding: 0; }
+.nav-links > a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--accent-gold); transition: width 0.3s; }
+.nav-links > a:hover, .nav-links > a.active, .nav-dd:hover > .nav-dd-trigger { color: var(--accent-gold); }
+.nav-links > a:hover::after, .nav-links > a.active::after { width: 100%; }
+.nav-dd { position: relative; }
+.nav-dd-trigger i { font-size: 0.55rem; margin-left: 0.2rem; transition: transform 0.3s; }
+.nav-dd:hover .nav-dd-trigger i { transform: rotate(180deg); }
+.nav-dd-menu { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 220px; padding-top: 12px; transition: visibility 0.2s, opacity 0.2s; z-index: 200; }
+.nav-dd:hover .nav-dd-menu { visibility: visible; opacity: 1; }
+.nav-dd-menu-inner { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0.5rem 0; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.nav-dd-menu a { display: block; padding: 0.55rem 1.2rem; font-size: 0.78rem; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+.nav-dd-menu a::after { display: none; }
+.nav-dd-menu a:hover { color: var(--accent-gold); background: rgba(200,169,97,0.08); }
 .nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 .hero-memberships { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease-out 0.35s both; }
 .hero-memberships .mbadge { padding: 0.3rem 0.8rem; background: rgba(200,169,97,0.08); border: 1px solid var(--border-subtle); border-radius: 6px; font-size: 0.72rem; font-weight: 600; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; }
@@ -209,10 +211,13 @@ a:hover { color: var(--accent-gold-light); }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav-links { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 2rem; gap: 1rem; border-bottom: 1px solid var(--border-subtle); max-height: 80vh; overflow-y: auto; }
+  .nav-links { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-primary); flex-direction: column; padding: 1.5rem 2rem; gap: 0; border-bottom: 1px solid var(--border-subtle); max-height: 85vh; overflow-y: auto; }
   .nav-links.open { display: flex; }
-  .nav-more-menu { display: contents; }
-  .nav-more > a { display: none; }
+  .nav-dd-menu { visibility: visible; opacity: 1; position: static; transform: none; padding-top: 0; }
+  .nav-dd-menu-inner { background: transparent; border: none; padding: 0; box-shadow: none; }
+  .nav-dd-menu a { padding: 0.5rem 0 0.5rem 1rem; }
+  .nav-dd > .nav-dd-trigger { display: none; }
+  .nav-links > a, .nav-dd-menu a { padding-top: 0.6rem; padding-bottom: 0.6rem; }
   .nav-toggle { display: block; }
   .hero-metrics { grid-template-columns: repeat(2, 1fr); }
   .contrib-card { grid-template-columns: 1fr; }
@@ -229,27 +234,47 @@ a:hover { color: var(--accent-gold-light); }
   <div class="nav-logo">W<span>.</span> Boulila</div>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
   <div class="nav-links">
-    <a href="#vision">Vision</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#contributions">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#awards">Awards</a>
-    <a href="#funding">Funding</a>
-    <a href="#keynotes">Talks</a>
-    <a href="#supervision">Students</a>
-    <div class="nav-more">
-      <a href="#">More <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:0.2rem"></i></a>
-      <div class="nav-more-menu">
+    <div class="nav-dd">
+      <span class="nav-dd-trigger">About <i class="fas fa-chevron-down"></i></span>
+      <div class="nav-dd-menu"><div class="nav-dd-menu-inner">
+        <a href="#vision">Research Vision</a>
         <a href="#education">Education</a>
-        <a href="#leadership">Academic Leadership</a>
-        <a href="#books">Books</a>
-        <a href="#editorial">Editorial Service</a>
-        <a href="#industry">Industry Impact</a>
         <a href="#certifications">Certifications</a>
         <a href="#memberships">Affiliations</a>
-        <a href="#contact">Contact</a>
-      </div>
+      </div></div>
     </div>
+    <div class="nav-dd">
+      <span class="nav-dd-trigger">Research <i class="fas fa-chevron-down"></i></span>
+      <div class="nav-dd-menu"><div class="nav-dd-menu-inner">
+        <a href="#contributions">Contributions</a>
+        <a href="#funding">Funding</a>
+        <a href="#keynotes">Talks</a>
+        <a href="#industry">Industry Impact</a>
+      </div></div>
+    </div>
+    <div class="nav-dd">
+      <span class="nav-dd-trigger">Teaching <i class="fas fa-chevron-down"></i></span>
+      <div class="nav-dd-menu"><div class="nav-dd-menu-inner">
+        <a href="#teaching">Teaching</a>
+        <a href="#supervision">Students</a>
+      </div></div>
+    </div>
+    <div class="nav-dd">
+      <span class="nav-dd-trigger">Publications <i class="fas fa-chevron-down"></i></span>
+      <div class="nav-dd-menu"><div class="nav-dd-menu-inner">
+        <a href="#publications">Publications</a>
+        <a href="#books">Books</a>
+      </div></div>
+    </div>
+    <div class="nav-dd">
+      <span class="nav-dd-trigger">Leadership <i class="fas fa-chevron-down"></i></span>
+      <div class="nav-dd-menu"><div class="nav-dd-menu-inner">
+        <a href="#leadership">Academic Leadership</a>
+        <a href="#editorial">Editorial Service</a>
+      </div></div>
+    </div>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -295,8 +320,54 @@ a:hover { color: var(--accent-gold-light); }
   <p class="vision-text">More recently, my work has moved toward the convergence of <strong>edge intelligence, multimodal AI, and trustworthy autonomous systems</strong>, with growing interest in <strong>agentic AI</strong> for distributed decision-making. As Director of the RIOTU Laboratory, I am advancing research integrating <strong>remote sensing, IoT, machine learning, computer vision, and language-enabled AI</strong> to develop robust solutions for precision agriculture, environmental monitoring, intelligent healthcare, and autonomous unmanned systems.</p>
 </div></section>
 
+<!-- EDUCATION -->
+<section class="section section-alt" id="education"><div class="section-inner">
+  <div class="section-label reveal">Education</div>
+  <h2 class="section-title reveal">Academic Foundation</h2>
+  <div class="section-divider reveal"></div>
+  <div class="timeline reveal">
+    <div class="tl-item"><div class="yr">2019</div><h3>HDR in Computer Science</h3><div class="inst">National College of CS, U. Manouba, Tunisia</div><div class="detail">From Remote Sensing Data to Knowledge: Modelling Uncertainties</div></div>
+    <div class="tl-item"><div class="yr">2009–2012</div><h3>Ph.D. in Computer Science</h3><div class="inst">University of Rennes 1, France</div><div class="detail">Spatiotemporal Uncertain Knowledge Discovery for Land Cover Change</div></div>
+    <div class="tl-item"><div class="yr">2005–2007</div><h3>M.Sc. in Computer Science</h3><div class="inst">National College of CS, U. Manouba, Tunisia</div><div class="detail">Multi-Approach Satellite Image Interpretation via Uncertain Information Fusion</div></div>
+    <div class="tl-item"><div class="yr">2000–2005</div><h3>B.Sc. in CS (First Class Honours)</h3><div class="inst">Aviation College of Borj El Amri, Tunis University</div><div class="detail">Highest First-Class Honours 3 consecutive years. Best Graduation Project (2005).</div></div>
+    <div class="tl-item"><div class="yr">2000</div><h3>Baccalaureate in Mathematics (Top 1%)</h3><div class="inst">School of El Haouaria, Tunisia</div></div>
+  </div>
+</div></section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications"><div class="section-inner">
+  <div class="section-label reveal">Professional Certifications</div>
+  <h2 class="section-title reveal">Industry Credentials</h2>
+  <div class="section-divider reveal"></div>
+  <div class="cert-grid">
+    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>Microsoft Azure Fundamentals</span></div>
+    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>MCSA: SQL Server 2012</span></div>
+    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>MCTS: SQL Server 2008, Database Dev.</span></div>
+    <div class="cert-card reveal"><i class="fas fa-database"></i><span>IBM Big Data Engineer — Mastery (2018)</span></div>
+    <div class="cert-card reveal"><i class="fas fa-database"></i><span>IBM Big Data Engineer — Explorer (2018)</span></div>
+  </div>
+</div></section>
+
+<!-- MEMBERSHIPS -->
+<section class="section section-alt" id="memberships"><div class="section-inner">
+  <div class="section-label reveal">International Affiliations &amp; Memberships</div>
+  <h2 class="section-title reveal">Global Academic Network</h2>
+  <div class="section-divider reveal"></div>
+  <div class="reveal">
+    <div class="appt-item"><div><h4>IEEE Senior Member</h4></div><div></div></div>
+    <div class="appt-item"><div><h4>Senior Fellow, Higher Education Academy (SFHEA)</h4><div class="sub">United Kingdom</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Member, AAAI</h4><div class="sub">Association for the Advancement of AI</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Member, ACM</h4></div><div></div></div>
+    <div class="appt-item"><div><h4>Adjunct Professor, VIT University</h4><div class="sub">India (#1 Private Engineering)</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Founding Head, Data Science Group</h4><div class="sub">Manouba University, Tunisia</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Senior Researcher, RIADI Laboratory</h4><div class="sub">U. Manouba, Tunisia (2006–present)</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Senior Research Fellow, U. Rennes 1</h4><div class="sub">France (2015–2020)</div></div><div></div></div>
+    <div class="appt-item"><div><h4>Senior Research Fellow, U. Stirling</h4><div class="sub">CogBID Lab, UK (2015–2019)</div></div><div></div></div>
+  </div>
+</div></section>
+
 <!-- CONTRIBUTIONS -->
-<section class="section section-alt" id="contributions"><div class="section-inner">
+<section class="section" id="contributions"><div class="section-inner">
   <div class="section-label reveal">Signature Research Contributions</div>
   <h2 class="section-title reveal">Five Research Lines Defining This Programme</h2>
   <div class="section-divider reveal"></div>
@@ -307,6 +378,97 @@ a:hover { color: var(--accent-gold-light); }
     <div class="contrib-card reveal"><div class="contrib-num">4</div><div><h3>Translational AI for Precision Agriculture</h3><p>Developed AI-driven Red Palm Weevil detection from acoustic signals and UAV monitoring. Saudi patent (SAIP SA 18938 B1, 2024).</p><div class="impact"><i class="fas fa-arrow-right"></i> Under commercial evaluation — hundreds of millions in economic impact</div></div></div>
     <div class="contrib-card reveal"><div class="contrib-num">5</div><div><h3>Emerging: LLMs, Generative AI &amp; Autonomous Systems</h3><p>Research at the convergence of large language models, generative AI, edge intelligence, and autonomous unmanned systems. Complemented by widely cited survey papers consolidating emerging areas.</p><div class="impact"><i class="fas fa-arrow-right"></i> Book: "The Rise of Agentic Intelligence" (Springer, 2026)</div></div></div>
   </div>
+</div></section>
+
+<!-- FUNDING -->
+<section class="section section-alt" id="funding"><div class="section-inner">
+  <div class="section-label reveal">Research Funding</div>
+  <h2 class="section-title reveal">Sustained Competitive Funding</h2>
+  <div class="section-divider reveal"></div>
+  <div class="stats-bar reveal" style="grid-template-columns:repeat(3,1fr)">
+    <div class="stat-cell"><div class="val">1.58M</div><div class="desc">SAR Total (~$422K)</div></div>
+    <div class="stat-cell"><div class="val">4 as PI</div><div class="desc">Principal Investigator</div></div>
+    <div class="stat-cell"><div class="val">7</div><div class="desc">Funding Agencies</div></div>
+  </div>
+  <div style="overflow-x:auto" class="reveal"><table class="fund-table"><thead><tr><th>Role</th><th>Project</th><th>Funder</th><th>SAR</th><th>Period</th></tr></thead><tbody>
+    <tr><td>Co-PI</td><td>AI Copyright Protection for Publishing Houses</td><td>Ministry of Culture</td><td class="amt">35K</td><td>2026–27</td></tr>
+    <tr><td class="pi">PI</td><td>QuadroRL: Search &amp; Rescue Quadrupeds</td><td>PSU Seed</td><td class="amt">30K</td><td>2025–26</td></tr>
+    <tr><td class="pi">PI</td><td>SkyHarvest: Palm Analytics via Domain Adaptation</td><td>PSU Seed</td><td class="amt">30K</td><td>2023–24</td></tr>
+    <tr><td>Co-PI</td><td>Terrain-Aided UAV Navigation</td><td>PSDSARC</td><td class="amt">300K</td><td>2023–24</td></tr>
+    <tr><td class="pi">PI</td><td>ServePalms: Smart Palm Tracking</td><td>PSU Seed</td><td class="amt">30K</td><td>2022–23</td></tr>
+    <tr><td>Co-PI</td><td>Deep Big Data for Environmental Services</td><td>King Abdulaziz U.</td><td class="amt">20K</td><td>2022–23</td></tr>
+    <tr><td>Co-PI</td><td>Smart Healthcare for Brain Disorders</td><td>Ministry of Education</td><td class="amt">350K</td><td>2021–23</td></tr>
+    <tr><td>Co-PI</td><td>SmartWater: IoT Water Monitoring</td><td>Ministry of Education</td><td class="amt">350K</td><td>2020–22</td></tr>
+    <tr><td class="pi">PI</td><td>COVID-19 Respiratory Disorder Detection</td><td>Taibah Univ.</td><td class="amt">200K</td><td>2020–21</td></tr>
+    <tr><td>Co-PI</td><td>Health-Related Rumor Detection</td><td>Taibah Univ.</td><td class="amt">200K</td><td>2020–21</td></tr>
+    <tr><td>Co-PI</td><td>Secure Pop-Up Networks</td><td>GCRF/SFC (UK)</td><td class="amt">40K</td><td>2019</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<!-- KEYNOTES -->
+<section class="section" id="keynotes"><div class="section-inner">
+  <div class="section-label reveal">Invited &amp; Keynote Addresses</div>
+  <h2 class="section-title reveal">Speaking Across Multiple Countries</h2>
+  <div class="section-divider reveal"></div>
+  <div class="keynote-card reveal"><div><h4>"Bridging the AI Implementation Gap: From Real Needs to Scaled Impact"</h4><div class="venue">3rd IBI, Tunisia</div></div><div class="yr">2026</div></div>
+  <div class="keynote-card reveal"><div><h4>"Modern Trends in Artificial Intelligence"</h4><div class="venue">Digital Government Authority, Saudi Arabia</div></div><div class="yr">2026</div></div>
+  <div class="keynote-card reveal"><div><h4>"Self-Supervised Pretraining for Large Action Models"</h4><div class="venue">4th OCTA, Tunisia</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"Teaching Machines to Act: Large Action Models and Agentic AI"</h4><div class="venue">4th SmartTech, Tunisia</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"Deep Learning at Scale for Remote Sensing and IoT"</h4><div class="venue">Jinan Univ. &amp; Jiangsu Univ. of Sci. &amp; Tech., China</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"Minimal Data, Maximum Impact"</h4><div class="venue">U. of Sharjah Alumni Conference, UAE</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"AI-Powered Early Detection for Red Palm Weevil"</h4><div class="venue">University of Technology Bahrain</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"Agentic AI: Autonomous and Sustainable Intelligence"</h4><div class="venue">Prince Sultan University, Saudi Arabia</div></div><div class="yr">2025</div></div>
+  <div class="keynote-card reveal"><div><h4>"Rethinking Machine Intelligence: Few-Shot Learning"</h4><div class="venue">2nd IPCAINT, Morocco</div></div><div class="yr">2024</div></div>
+  <div class="keynote-card reveal"><div><h4>"Reimagining the Future of Computer Vision"</h4><div class="venue">7th IRICT, Malaysia</div></div><div class="yr">2023</div></div>
+  <div class="keynote-card reveal"><div><h4>"Big Remote Sensing Data Analytics"</h4><div class="venue">KAUST, Saudi Arabia</div></div><div class="yr">2022</div></div>
+</div></section>
+
+<!-- INDUSTRY -->
+<section class="section section-alt" id="industry"><div class="section-inner">
+  <div class="section-label reveal">Industry &amp; Translational Impact</div>
+  <h2 class="section-title reveal">15+ Years of Real-World Deployment</h2>
+  <div class="section-divider reveal"></div>
+  <p class="vision-text reveal" style="margin-bottom:1.5rem">Translational work spans national-scale BI deployment, patented AI systems, and healthcare sensing. Prior: <strong>Sungard (US)</strong>, <strong>Business &amp; Decision (France)</strong>, <strong>GIZ GmbH (Germany)</strong>.</p>
+  <div class="list-card reveal"><h4>National BI Deployment (Tunisia, 2009–2015)</h4><p>BI solutions across 174 training centers of three national agencies and social security funds.</p></div>
+  <div class="list-card reveal"><h4>Red Palm Weevil Detection (Saudi Arabia, 2022–present)</h4><p>Patented acoustic + UAV system (SAIP SA 18938 B1). Under commercial field evaluation.</p></div>
+  <div class="list-card reveal"><h4>Web Portal Development (Tunisia, 2009–2015)</h4><p>Portals and platforms for governmental and sectoral organizations.</p></div>
+</div></section>
+
+<!-- TEACHING -->
+<section class="section" id="teaching"><div class="section-inner">
+  <div class="section-label reveal">Teaching</div>
+  <h2 class="section-title reveal">Computational Thinking at Every Level</h2>
+  <div class="section-divider reveal"></div>
+  <div class="text-block reveal">
+    <p><strong>Outstanding Teacher Award</strong>, CCIS, PSU (2025). Computational-thinking-driven teaching across 4 institutions since 2005.</p>
+    <p><strong>Curriculum:</strong> Core member, AI programme committee. Designed ML and Big Data courses. Integrates IT credentialing and technology-mediated play.</p>
+    <p><strong>Courses:</strong> ML, Big Data, AI, DL, Digital Logic, Java, Web Dev, DB Admin, Cryptography, SE, OOP, Data Fusion, Networks, Algorithms.</p>
+    <p><strong>Training:</strong> 200+ professional sessions for banking, government, and NGO sectors.</p>
+  </div>
+</div></section>
+
+<!-- SUPERVISION -->
+<section class="section section-alt" id="supervision"><div class="section-inner">
+  <div class="section-label reveal">Graduate Supervision</div>
+  <h2 class="section-title reveal">Mentoring Across Five Countries</h2>
+  <div class="section-divider reveal"></div>
+  <div class="stats-bar reveal" style="grid-template-columns:repeat(4,1fr)">
+    <div class="stat-cell"><div class="val">11</div><div class="desc">PhD Students</div></div>
+    <div class="stat-cell"><div class="val">25+</div><div class="desc">MSc Students</div></div>
+    <div class="stat-cell"><div class="val">50+</div><div class="desc">BSc Projects</div></div>
+    <div class="stat-cell"><div class="val">9</div><div class="desc">External Examiner</div></div>
+  </div>
+  <div class="pub-group reveal">Completed Doctoral Students</div>
+  <div class="reveal">
+    <div class="appt-item"><div><h4>A. Ferchichi — Uncertainty in Land Cover</h4><div class="sub">U. Manouba, Tunisia</div></div><div class="dates">2017</div></div>
+    <div class="appt-item"><div><h4>M.W. Farouq — Gene Expression Modeling</h4><div class="sub">U. Stirling, UK</div></div><div class="dates">2018</div></div>
+    <div class="appt-item"><div><h4>I. Chebbi — Spatiotemporal Big RS</h4><div class="sub">U. Paris 8 / U. Manouba</div></div><div class="dates">2020</div></div>
+    <div class="appt-item"><div><h4>Z. Ayadi — Uncertain Constraint Segmentation</h4><div class="sub">U. Strasbourg / U. Manouba</div></div><div class="dates">2022</div></div>
+    <div class="appt-item"><div><h4>S.B. Atitallah — Microservices for IoT</h4><div class="sub">U. Manouba</div></div><div class="dates">2023</div></div>
+    <div class="appt-item"><div><h4>Y. Hajjaji — IoT &amp; DL for Remote Sensing</h4><div class="sub">Edinburgh Napier / U. Manouba</div></div><div class="dates">2023</div></div>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-secondary);margin-top:1.5rem" class="reveal"><strong style="color:var(--accent-gold)">Current:</strong> F. Yakoubi (U. Carthage, 2021–), M. Khazri (U. Manouba, 2022–), O. Belhwichet (U. Carthage, 2022–), N. Ben Ameur (UTBM / U. Tunis El Manar, 2026–)</p>
+  <p style="font-size:0.85rem;color:var(--text-muted);margin-top:.5rem" class="reveal"><strong style="color:var(--accent-gold)">External Examiner:</strong> 9 theses including Università di Bologna, King Saud U., King Abdulaziz U., VIT-AP University (India).</p>
 </div></section>
 
 <!-- PUBLICATIONS -->
@@ -350,8 +512,46 @@ a:hover { color: var(--accent-gold-light); }
   <p style="text-align:center;margin-top:2rem;font-size:0.88rem;color:var(--text-muted);" class="reveal">Full list: <a href="https://scholar.google.com/citations?user=ubl6WkoAAAAJ">Scholar</a> · <a href="https://dblp.org/pid/05/8059.html">DBLP</a> · <a href="https://www.scopus.com/authid/detail.uri?authorId=37088273900">Scopus</a></p>
 </div></section>
 
+<!-- BOOKS -->
+<section class="section section-alt" id="books"><div class="section-inner">
+  <div class="section-label reveal">Books</div>
+  <h2 class="section-title reveal">5 Books with Leading Publishers</h2>
+  <div class="section-divider reveal"></div>
+  <div class="books-grid">
+    <div class="book-card reveal"><div class="publisher">Springer · 2026</div><h4>The Rise of Agentic Intelligence</h4><div class="auth"><b>Boulila, W.</b>, Ammar, Abdelkader, et al.</div></div>
+    <div class="book-card reveal"><div class="publisher">Elsevier · 2025</div><h4>Edge Intelligence: DL for IoT Security</h4><div class="auth">Ahmad, Latif, <b>Boulila, W.</b>, et al.</div></div>
+    <div class="book-card reveal"><div class="publisher">Springer · 2025</div><h4>Generative AI and Large Language Models</h4><div class="auth">Koubaa, Ammar, Ghouti, <b>Boulila, W.</b>, et al.</div></div>
+    <div class="book-card reveal"><div class="publisher">Springer · 2024</div><h4>Decision Making &amp; Security for IoT</h4><div class="auth"><b>Boulila, W.</b>, Ahmad, Koubaa, et al.</div></div>
+  </div>
+</div></section>
+
+<!-- LEADERSHIP -->
+<section class="section" id="leadership"><div class="section-inner">
+  <div class="section-label reveal">Academic Leadership</div>
+  <h2 class="section-title reveal">Building Research Infrastructure</h2>
+  <div class="section-divider reveal"></div>
+  <div class="list-card reveal"><h4>Director, RIOTU Laboratory (2024–present)</h4><p>Scaled PSU's first and largest lab to 20+ members. Secured multi-agency funding, built academia-industry-government partnerships. Highest Impact Factor Research Lab (PSU, 2023).</p></div>
+  <div class="list-card reveal"><h4>M.Sc. &amp; B.Sc. AI Curriculum Architect (2023–2026)</h4><p>Core member of AI programme committee at PSU — design, sequencing, ABET-aligned assessment.</p></div>
+  <div class="list-card reveal"><h4>Conference &amp; Community Builder</h4><p>General Chair of 3 conferences. 20+ special sessions at IJCNN, KES, ICCCI, IWCMC, IRICT.</p></div>
+  <div class="list-card reveal"><h4>Departmental Leadership</h4><p>Chairman of multiple committees at Taibah (2015–2021). BSc coordinator at ISAMM (2012–2015). Dept. Chair at EABA (2010–2012).</p></div>
+</div></section>
+
+<!-- EDITORIAL -->
+<section class="section section-alt" id="editorial"><div class="section-inner">
+  <div class="section-label reveal">Editorial &amp; Conference Service</div>
+  <h2 class="section-title reveal">Shaping the Field</h2>
+  <div class="section-divider reveal"></div>
+  <div class="text-block reveal">
+    <p><strong>Associate Editor:</strong> Frontiers in Comm. &amp; Networks (2022–present); Int. J. Business Data Comm. (2021–present).</p>
+    <p><strong>Guest Editor:</strong> IEEE JBHI IF 7.7; Int. J. Remote Sensing IF 3.0; Remote Sensing IF 5.3; CMES IF 2.4; CMC IF 3.1; Frontiers; Discover IoT (Springer).</p>
+    <p><strong>General Chair:</strong> SmartTech 2024, IPCAINT 2024, SmartTech 2022.</p>
+    <p><strong>Session Organizer:</strong> IJCNN 2025–26, IRICT 2025, IWCMC 2023–25, KES 2023–26, ICCCI 2022–24.</p>
+    <p><strong>Reviewer:</strong> IEEE TGRS, IEEE TCE, AI Review, Neural Comp., CVIU, KAIS, PAA, IEEE Access, Remote Sensing, Sensors.</p>
+  </div>
+</div></section>
+
 <!-- AWARDS -->
-<section class="section section-alt" id="awards"><div class="section-inner">
+<section class="section" id="awards"><div class="section-inner">
   <div class="section-label reveal">Honors &amp; Awards</div>
   <h2 class="section-title reveal">Recognized Globally and Nationally</h2>
   <div class="section-divider reveal"></div>
@@ -370,181 +570,6 @@ a:hover { color: var(--accent-gold-light); }
     <div class="award-card reveal"><div class="award-icon"><i class="fas fa-file-alt"></i></div><div><h4>Top-Cited Paper Awards</h4><div class="year">2021–2024</div><div class="adesc">CSR, CBM, IJIST</div></div></div>
     <div class="award-card reveal"><div class="award-icon"><i class="fas fa-medal"></i></div><div><h4>Best Paper Awards</h4><div class="year">2021–2024</div><div class="adesc">SmartTech 2024, ICACIn 2021, ICOICS 2021</div></div></div>
     <div class="award-card reveal"><div class="award-icon"><i class="fas fa-user-graduate"></i></div><div><h4>Best Assistant Professor in Tunisia</h4><div class="year">2012</div></div></div>
-  </div>
-</div></section>
-
-<!-- FUNDING -->
-<section class="section" id="funding"><div class="section-inner">
-  <div class="section-label reveal">Research Funding</div>
-  <h2 class="section-title reveal">Sustained Competitive Funding</h2>
-  <div class="section-divider reveal"></div>
-  <div class="stats-bar reveal" style="grid-template-columns:repeat(3,1fr)">
-    <div class="stat-cell"><div class="val">1.58M</div><div class="desc">SAR Total (~$422K)</div></div>
-    <div class="stat-cell"><div class="val">4 as PI</div><div class="desc">Principal Investigator</div></div>
-    <div class="stat-cell"><div class="val">7</div><div class="desc">Funding Agencies</div></div>
-  </div>
-  <div style="overflow-x:auto" class="reveal"><table class="fund-table"><thead><tr><th>Role</th><th>Project</th><th>Funder</th><th>SAR</th><th>Period</th></tr></thead><tbody>
-    <tr><td>Co-PI</td><td>AI Copyright Protection for Publishing Houses</td><td>Ministry of Culture</td><td class="amt">35K</td><td>2026–27</td></tr>
-    <tr><td class="pi">PI</td><td>QuadroRL: Search &amp; Rescue Quadrupeds</td><td>PSU Seed</td><td class="amt">30K</td><td>2025–26</td></tr>
-    <tr><td class="pi">PI</td><td>SkyHarvest: Palm Analytics via Domain Adaptation</td><td>PSU Seed</td><td class="amt">30K</td><td>2023–24</td></tr>
-    <tr><td>Co-PI</td><td>Terrain-Aided UAV Navigation</td><td>PSDSARC</td><td class="amt">300K</td><td>2023–24</td></tr>
-    <tr><td class="pi">PI</td><td>ServePalms: Smart Palm Tracking</td><td>PSU Seed</td><td class="amt">30K</td><td>2022–23</td></tr>
-    <tr><td>Co-PI</td><td>Deep Big Data for Environmental Services</td><td>King Abdulaziz U.</td><td class="amt">20K</td><td>2022–23</td></tr>
-    <tr><td>Co-PI</td><td>Smart Healthcare for Brain Disorders</td><td>Ministry of Education</td><td class="amt">350K</td><td>2021–23</td></tr>
-    <tr><td>Co-PI</td><td>SmartWater: IoT Water Monitoring</td><td>Ministry of Education</td><td class="amt">350K</td><td>2020–22</td></tr>
-    <tr><td class="pi">PI</td><td>COVID-19 Respiratory Disorder Detection</td><td>Taibah Univ.</td><td class="amt">200K</td><td>2020–21</td></tr>
-    <tr><td>Co-PI</td><td>Health-Related Rumor Detection</td><td>Taibah Univ.</td><td class="amt">200K</td><td>2020–21</td></tr>
-    <tr><td>Co-PI</td><td>Secure Pop-Up Networks</td><td>GCRF/SFC (UK)</td><td class="amt">40K</td><td>2019</td></tr>
-  </tbody></table></div>
-</div></section>
-
-<!-- KEYNOTES -->
-<section class="section section-alt" id="keynotes"><div class="section-inner">
-  <div class="section-label reveal">Invited &amp; Keynote Addresses</div>
-  <h2 class="section-title reveal">Speaking Across Multiple Countries</h2>
-  <div class="section-divider reveal"></div>
-  <div class="keynote-card reveal"><div><h4>"Bridging the AI Implementation Gap: From Real Needs to Scaled Impact"</h4><div class="venue">3rd IBI, Tunisia</div></div><div class="yr">2026</div></div>
-  <div class="keynote-card reveal"><div><h4>"Modern Trends in Artificial Intelligence"</h4><div class="venue">Digital Government Authority, Saudi Arabia</div></div><div class="yr">2026</div></div>
-  <div class="keynote-card reveal"><div><h4>"Self-Supervised Pretraining for Large Action Models"</h4><div class="venue">4th OCTA, Tunisia</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"Teaching Machines to Act: Large Action Models and Agentic AI"</h4><div class="venue">4th SmartTech, Tunisia</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"Deep Learning at Scale for Remote Sensing and IoT"</h4><div class="venue">Jinan Univ. &amp; Jiangsu Univ. of Sci. &amp; Tech., China</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"Minimal Data, Maximum Impact"</h4><div class="venue">U. of Sharjah Alumni Conference, UAE</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"AI-Powered Early Detection for Red Palm Weevil"</h4><div class="venue">University of Technology Bahrain</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"Agentic AI: Autonomous and Sustainable Intelligence"</h4><div class="venue">Prince Sultan University, Saudi Arabia</div></div><div class="yr">2025</div></div>
-  <div class="keynote-card reveal"><div><h4>"Rethinking Machine Intelligence: Few-Shot Learning"</h4><div class="venue">2nd IPCAINT, Morocco</div></div><div class="yr">2024</div></div>
-  <div class="keynote-card reveal"><div><h4>"Reimagining the Future of Computer Vision"</h4><div class="venue">7th IRICT, Malaysia</div></div><div class="yr">2023</div></div>
-  <div class="keynote-card reveal"><div><h4>"Big Remote Sensing Data Analytics"</h4><div class="venue">KAUST, Saudi Arabia</div></div><div class="yr">2022</div></div>
-</div></section>
-
-<!-- SUPERVISION -->
-<section class="section" id="supervision"><div class="section-inner">
-  <div class="section-label reveal">Graduate Supervision</div>
-  <h2 class="section-title reveal">Mentoring Across Five Countries</h2>
-  <div class="section-divider reveal"></div>
-  <div class="stats-bar reveal" style="grid-template-columns:repeat(4,1fr)">
-    <div class="stat-cell"><div class="val">11</div><div class="desc">PhD Students</div></div>
-    <div class="stat-cell"><div class="val">25+</div><div class="desc">MSc Students</div></div>
-    <div class="stat-cell"><div class="val">50+</div><div class="desc">BSc Projects</div></div>
-    <div class="stat-cell"><div class="val">9</div><div class="desc">External Examiner</div></div>
-  </div>
-  <div class="pub-group reveal">Completed Doctoral Students</div>
-  <div class="reveal">
-    <div class="appt-item"><div><h4>A. Ferchichi — Uncertainty in Land Cover</h4><div class="sub">U. Manouba, Tunisia</div></div><div class="dates">2017</div></div>
-    <div class="appt-item"><div><h4>M.W. Farouq — Gene Expression Modeling</h4><div class="sub">U. Stirling, UK</div></div><div class="dates">2018</div></div>
-    <div class="appt-item"><div><h4>I. Chebbi — Spatiotemporal Big RS</h4><div class="sub">U. Paris 8 / U. Manouba</div></div><div class="dates">2020</div></div>
-    <div class="appt-item"><div><h4>Z. Ayadi — Uncertain Constraint Segmentation</h4><div class="sub">U. Strasbourg / U. Manouba</div></div><div class="dates">2022</div></div>
-    <div class="appt-item"><div><h4>S.B. Atitallah — Microservices for IoT</h4><div class="sub">U. Manouba</div></div><div class="dates">2023</div></div>
-    <div class="appt-item"><div><h4>Y. Hajjaji — IoT &amp; DL for Remote Sensing</h4><div class="sub">Edinburgh Napier / U. Manouba</div></div><div class="dates">2023</div></div>
-  </div>
-  <p style="font-size:0.88rem;color:var(--text-secondary);margin-top:1.5rem" class="reveal"><strong style="color:var(--accent-gold)">Current:</strong> F. Yakoubi (U. Carthage, 2021–), M. Khazri (U. Manouba, 2022–), O. Belhwichet (U. Carthage, 2022–), N. Ben Ameur (UTBM / U. Tunis El Manar, 2026–)</p>
-  <p style="font-size:0.85rem;color:var(--text-muted);margin-top:.5rem" class="reveal"><strong style="color:var(--accent-gold)">External Examiner:</strong> 9 theses including Università di Bologna, King Saud U., King Abdulaziz U., VIT-AP University (India).</p>
-</div></section>
-
-<!-- EDUCATION -->
-<section class="section section-alt" id="education"><div class="section-inner">
-  <div class="section-label reveal">Education</div>
-  <h2 class="section-title reveal">Academic Foundation</h2>
-  <div class="section-divider reveal"></div>
-  <div class="timeline reveal">
-    <div class="tl-item"><div class="yr">2019</div><h3>HDR in Computer Science</h3><div class="inst">National College of CS, U. Manouba, Tunisia</div><div class="detail">From Remote Sensing Data to Knowledge: Modelling Uncertainties</div></div>
-    <div class="tl-item"><div class="yr">2009–2012</div><h3>Ph.D. in Computer Science</h3><div class="inst">University of Rennes 1, France</div><div class="detail">Spatiotemporal Uncertain Knowledge Discovery for Land Cover Change</div></div>
-    <div class="tl-item"><div class="yr">2005–2007</div><h3>M.Sc. in Computer Science</h3><div class="inst">National College of CS, U. Manouba, Tunisia</div><div class="detail">Multi-Approach Satellite Image Interpretation via Uncertain Information Fusion</div></div>
-    <div class="tl-item"><div class="yr">2000–2005</div><h3>B.Sc. in CS (First Class Honours)</h3><div class="inst">Aviation College of Borj El Amri, Tunis University</div><div class="detail">Highest First-Class Honours 3 consecutive years. Best Graduation Project (2005).</div></div>
-    <div class="tl-item"><div class="yr">2000</div><h3>Baccalaureate in Mathematics (Top 1%)</h3><div class="inst">School of El Haouaria, Tunisia</div></div>
-  </div>
-</div></section>
-
-<!-- LEADERSHIP -->
-<section class="section" id="leadership"><div class="section-inner">
-  <div class="section-label reveal">Academic Leadership</div>
-  <h2 class="section-title reveal">Building Research Infrastructure</h2>
-  <div class="section-divider reveal"></div>
-  <div class="list-card reveal"><h4>Director, RIOTU Laboratory (2024–present)</h4><p>Scaled PSU's first and largest lab to 20+ members. Secured multi-agency funding, built academia-industry-government partnerships. Highest Impact Factor Research Lab (PSU, 2023).</p></div>
-  <div class="list-card reveal"><h4>M.Sc. &amp; B.Sc. AI Curriculum Architect (2023–2026)</h4><p>Core member of AI programme committee at PSU — design, sequencing, ABET-aligned assessment.</p></div>
-  <div class="list-card reveal"><h4>Conference &amp; Community Builder</h4><p>General Chair of 3 conferences. 20+ special sessions at IJCNN, KES, ICCCI, IWCMC, IRICT.</p></div>
-  <div class="list-card reveal"><h4>Departmental Leadership</h4><p>Chairman of multiple committees at Taibah (2015–2021). BSc coordinator at ISAMM (2012–2015). Dept. Chair at EABA (2010–2012).</p></div>
-</div></section>
-
-<!-- BOOKS -->
-<section class="section section-alt" id="books"><div class="section-inner">
-  <div class="section-label reveal">Books</div>
-  <h2 class="section-title reveal">5 Books with Leading Publishers</h2>
-  <div class="section-divider reveal"></div>
-  <div class="books-grid">
-    <div class="book-card reveal"><div class="publisher">Springer · 2026</div><h4>The Rise of Agentic Intelligence</h4><div class="auth"><b>Boulila, W.</b>, Ammar, Abdelkader, et al.</div></div>
-    <div class="book-card reveal"><div class="publisher">Elsevier · 2025</div><h4>Edge Intelligence: DL for IoT Security</h4><div class="auth">Ahmad, Latif, <b>Boulila, W.</b>, et al.</div></div>
-    <div class="book-card reveal"><div class="publisher">Springer · 2025</div><h4>Generative AI and Large Language Models</h4><div class="auth">Koubaa, Ammar, Ghouti, <b>Boulila, W.</b>, et al.</div></div>
-    <div class="book-card reveal"><div class="publisher">Springer · 2024</div><h4>Decision Making &amp; Security for IoT</h4><div class="auth"><b>Boulila, W.</b>, Ahmad, Koubaa, et al.</div></div>
-  </div>
-</div></section>
-
-<!-- EDITORIAL -->
-<section class="section" id="editorial"><div class="section-inner">
-  <div class="section-label reveal">Editorial &amp; Conference Service</div>
-  <h2 class="section-title reveal">Shaping the Field</h2>
-  <div class="section-divider reveal"></div>
-  <div class="text-block reveal">
-    <p><strong>Associate Editor:</strong> Frontiers in Comm. &amp; Networks (2022–present); Int. J. Business Data Comm. (2021–present).</p>
-    <p><strong>Guest Editor:</strong> IEEE JBHI IF 7.7; Int. J. Remote Sensing IF 3.0; Remote Sensing IF 5.3; CMES IF 2.4; CMC IF 3.1; Frontiers; Discover IoT (Springer).</p>
-    <p><strong>General Chair:</strong> SmartTech 2024, IPCAINT 2024, SmartTech 2022.</p>
-    <p><strong>Session Organizer:</strong> IJCNN 2025–26, IRICT 2025, IWCMC 2023–25, KES 2023–26, ICCCI 2022–24.</p>
-    <p><strong>Reviewer:</strong> IEEE TGRS, IEEE TCE, AI Review, Neural Comp., CVIU, KAIS, PAA, IEEE Access, Remote Sensing, Sensors.</p>
-  </div>
-</div></section>
-
-<!-- TEACHING -->
-<section class="section section-alt" id="teaching"><div class="section-inner">
-  <div class="section-label reveal">Teaching</div>
-  <h2 class="section-title reveal">Computational Thinking at Every Level</h2>
-  <div class="section-divider reveal"></div>
-  <div class="text-block reveal">
-    <p><strong>Outstanding Teacher Award</strong>, CCIS, PSU (2025). Computational-thinking-driven teaching across 4 institutions since 2005.</p>
-    <p><strong>Curriculum:</strong> Core member, AI programme committee. Designed ML and Big Data courses. Integrates IT credentialing and technology-mediated play.</p>
-    <p><strong>Courses:</strong> ML, Big Data, AI, DL, Digital Logic, Java, Web Dev, DB Admin, Cryptography, SE, OOP, Data Fusion, Networks, Algorithms.</p>
-    <p><strong>Training:</strong> 200+ professional sessions for banking, government, and NGO sectors.</p>
-  </div>
-</div></section>
-
-<!-- INDUSTRY -->
-<section class="section" id="industry"><div class="section-inner">
-  <div class="section-label reveal">Industry &amp; Translational Impact</div>
-  <h2 class="section-title reveal">15+ Years of Real-World Deployment</h2>
-  <div class="section-divider reveal"></div>
-  <p class="vision-text reveal" style="margin-bottom:1.5rem">Translational work spans national-scale BI deployment, patented AI systems, and healthcare sensing. Prior: <strong>Sungard (US)</strong>, <strong>Business &amp; Decision (France)</strong>, <strong>GIZ GmbH (Germany)</strong>.</p>
-  <div class="list-card reveal"><h4>National BI Deployment (Tunisia, 2009–2015)</h4><p>BI solutions across 174 training centers of three national agencies and social security funds.</p></div>
-  <div class="list-card reveal"><h4>Red Palm Weevil Detection (Saudi Arabia, 2022–present)</h4><p>Patented acoustic + UAV system (SAIP SA 18938 B1). Under commercial field evaluation.</p></div>
-  <div class="list-card reveal"><h4>Web Portal Development (Tunisia, 2009–2015)</h4><p>Portals and platforms for governmental and sectoral organizations.</p></div>
-</div></section>
-
-<!-- CERTIFICATIONS -->
-<section class="section section-alt" id="certifications"><div class="section-inner">
-  <div class="section-label reveal">Professional Certifications</div>
-  <h2 class="section-title reveal">Industry Credentials</h2>
-  <div class="section-divider reveal"></div>
-  <div class="cert-grid">
-    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>Microsoft Azure Fundamentals</span></div>
-    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>MCSA: SQL Server 2012</span></div>
-    <div class="cert-card reveal"><i class="fab fa-microsoft"></i><span>MCTS: SQL Server 2008, Database Dev.</span></div>
-    <div class="cert-card reveal"><i class="fas fa-database"></i><span>IBM Big Data Engineer — Mastery (2018)</span></div>
-    <div class="cert-card reveal"><i class="fas fa-database"></i><span>IBM Big Data Engineer — Explorer (2018)</span></div>
-  </div>
-</div></section>
-
-<!-- MEMBERSHIPS -->
-<section class="section" id="memberships"><div class="section-inner">
-  <div class="section-label reveal">International Affiliations &amp; Memberships</div>
-  <h2 class="section-title reveal">Global Academic Network</h2>
-  <div class="section-divider reveal"></div>
-  <div class="reveal">
-    <div class="appt-item"><div><h4>IEEE Senior Member</h4></div><div></div></div>
-    <div class="appt-item"><div><h4>Senior Fellow, Higher Education Academy (SFHEA)</h4><div class="sub">United Kingdom</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Member, AAAI</h4><div class="sub">Association for the Advancement of AI</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Member, ACM</h4></div><div></div></div>
-    <div class="appt-item"><div><h4>Adjunct Professor, VIT University</h4><div class="sub">India (#1 Private Engineering)</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Founding Head, Data Science Group</h4><div class="sub">Manouba University, Tunisia</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Senior Researcher, RIADI Laboratory</h4><div class="sub">U. Manouba, Tunisia (2006–present)</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Senior Research Fellow, U. Rennes 1</h4><div class="sub">France (2015–2020)</div></div><div></div></div>
-    <div class="appt-item"><div><h4>Senior Research Fellow, U. Stirling</h4><div class="sub">CogBID Lab, UK (2015–2019)</div></div><div></div></div>
   </div>
 </div></section>
 
@@ -568,9 +593,10 @@ a:hover { color: var(--accent-gold-light); }
 
 <script>
 const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
-const secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c))});
-document.querySelectorAll('.nav-links a[href^="#"]').forEach(l=>l.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+const secs=document.querySelectorAll('section[id]'),allNavLinks=document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});allNavLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c));
+document.querySelectorAll('.nav-dd').forEach(dd=>{const links=dd.querySelectorAll('a[href^="#"]');const anyActive=[...links].some(l=>l.classList.contains('active'));dd.querySelector('.nav-dd-trigger').classList.toggle('active',anyActive)})});
+allNavLinks.forEach(l=>l.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
 const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 function animNum(el,t,d=1500){let s=0;const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3),txt=el.textContent,sf=txt.includes('+')?'+':'';el.textContent=Math.floor(e*t).toLocaleString()+sf;if(p<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString()+sf};requestAnimationFrame(step)}
