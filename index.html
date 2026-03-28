@@ -64,9 +64,7 @@ a:hover { color: var(--accent-gold-light); }
 .nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 .hero-metrics-footer { text-align: center; margin-top: 0.8rem; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease-out 0.65s both; }
 .gs-live { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
-.gs-live .gs-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
-.gs-live.loading .gs-dot { background: var(--accent-gold); }
-.gs-live.error .gs-dot { background: #f87171; }
+.gs-live .gs-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
 .hero-memberships { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease-out 0.35s both; }
 .hero-memberships .mbadge { padding: 0.3rem 0.8rem; background: rgba(200,169,97,0.08); border: 1px solid var(--border-subtle); border-radius: 6px; font-size: 0.72rem; font-weight: 600; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; }
 
@@ -102,6 +100,7 @@ a:hover { color: var(--accent-gold-light); }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-label { font-size: 0.75rem; font-weight: 600; color: var(--accent-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
 .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.5rem; }
+.section-title .num { font-family: var(--font-body); }
 .section-divider { width: 60px; height: 2px; background: var(--gradient-gold); margin-bottom: 2.5rem; }
 .section-alt { background: var(--bg-secondary); }
 
@@ -300,13 +299,13 @@ a:hover { color: var(--accent-gold-light); }
       <span class="tag">Trustworthy AI</span><span class="tag">Computer Vision</span><span class="tag">Remote Sensing</span><span class="tag">IoT &amp; Edge Intelligence</span><span class="tag">LLMs &amp; NLP</span><span class="tag">Uncertainty Modeling</span><span class="tag">Data Fusion</span>
     </div>
     <div class="hero-metrics">
-      <div class="hero-metric"><div class="number" id="gs-pubs">300+</div><div class="label">Publications</div></div>
-      <div class="hero-metric"><div class="number" id="gs-citations">9,300+</div><div class="label">Citations</div></div>
-      <div class="hero-metric"><div class="number" id="gs-hindex">53</div><div class="label">h-index</div></div>
-      <div class="hero-metric"><div class="number" id="gs-i10">145</div><div class="label">i10-index</div></div>
+      <div class="hero-metric"><div class="number" id="gs-pubs" data-static>300+</div><div class="label">Publications</div></div>
+      <div class="hero-metric"><div class="number" id="gs-citations" data-static>9,400+</div><div class="label">Citations</div></div>
+      <div class="hero-metric"><div class="number" id="gs-hindex" data-static>53</div><div class="label">h-index</div></div>
+      <div class="hero-metric"><div class="number" id="gs-i10" data-static>145</div><div class="label">i10-index</div></div>
     </div>
     <div class="hero-metrics-footer">
-      <span class="gs-live loading" id="gs-status"><span class="gs-dot"></span> <span id="gs-status-text">Fetching live data from Google Scholar...</span></span>
+      <span class="gs-live" id="gs-status"><span class="gs-dot"></span> <span>Source: Google Scholar · As of 2026</span></span>
     </div>
     <div class="hero-links">
       <a href="https://scholar.google.com/citations?user=ubl6WkoAAAAJ" class="primary" target="_blank"><i class="ai ai-google-scholar"></i> Scholar</a>
@@ -394,8 +393,8 @@ a:hover { color: var(--accent-gold-light); }
   <h2 class="section-title reveal">Sustained Competitive Funding</h2>
   <div class="section-divider reveal"></div>
   <div class="stats-bar reveal" style="grid-template-columns:repeat(3,1fr)">
-    <div class="stat-cell"><div class="val">1.58M</div><div class="desc">SAR Total (~$422K)</div></div>
-    <div class="stat-cell"><div class="val">4 as PI</div><div class="desc">Principal Investigator</div></div>
+    <div class="stat-cell"><div class="val" data-nocount>1.58M</div><div class="desc">SAR Total (~$422K)</div></div>
+    <div class="stat-cell"><div class="val" data-nocount>4 as PI</div><div class="desc">Principal Investigator</div></div>
     <div class="stat-cell"><div class="val">7</div><div class="desc">Funding Agencies</div></div>
   </div>
   <div style="overflow-x:auto" class="reveal"><table class="fund-table"><thead><tr><th>Role</th><th>Project</th><th>Funder</th><th>SAR</th><th>Period</th></tr></thead><tbody>
@@ -434,7 +433,7 @@ a:hover { color: var(--accent-gold-light); }
 <!-- INDUSTRY -->
 <section class="section section-alt" id="industry"><div class="section-inner">
   <div class="section-label reveal">Industry &amp; Translational Impact</div>
-  <h2 class="section-title reveal">15+ Years of Real-World Deployment</h2>
+  <h2 class="section-title reveal"><span class="num">15+</span> Years of Real-World Deployment</h2>
   <div class="section-divider reveal"></div>
   <p class="vision-text reveal" style="margin-bottom:1.5rem">Translational work spans national-scale BI deployment, patented AI systems, and healthcare sensing. Prior: <strong>Sungard (US)</strong>, <strong>Business &amp; Decision (France)</strong>, <strong>GIZ GmbH (Germany)</strong>.</p>
   <div class="list-card reveal"><h4>National BI Deployment (Tunisia, 2009–2015)</h4><p>BI solutions across 174 training centers of three national agencies and social security funds.</p></div>
@@ -482,7 +481,7 @@ a:hover { color: var(--accent-gold-light); }
 <!-- PUBLICATIONS -->
 <section class="section" id="publications"><div class="section-inner">
   <div class="section-label reveal">Publications</div>
-  <h2 class="section-title reveal">300+ Publications. 110 in Q1 Journals.</h2>
+  <h2 class="section-title reveal"><span class="num">300+</span> Publications. <span class="num">110</span> in Q1 Journals.</h2>
   <div class="section-divider reveal"></div>
   <div class="stats-bar reveal">
     <div class="stat-cell"><div class="val">160+</div><div class="desc">Journals</div></div>
@@ -523,7 +522,7 @@ a:hover { color: var(--accent-gold-light); }
 <!-- BOOKS -->
 <section class="section section-alt" id="books"><div class="section-inner">
   <div class="section-label reveal">Books</div>
-  <h2 class="section-title reveal">5 Books with Leading Publishers</h2>
+  <h2 class="section-title reveal"><span class="num">5</span> Books with Leading Publishers</h2>
   <div class="section-divider reveal"></div>
   <div class="books-grid">
     <div class="book-card reveal"><div class="publisher">Springer · 2026</div><h4>The Rise of Agentic Intelligence</h4><div class="auth"><b>Boulila, W.</b>, Ammar, Abdelkader, et al.</div></div>
@@ -612,172 +611,41 @@ allNavLinks.forEach(l=>l.addEventListener('click',()=>document.querySelector('.n
 const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ── Number Animation ──
-function animNum(el, target, duration=1500) {
+// ── Number Counter Animation ──
+function animNum(el, target, duration) {
+  duration = duration || 1500;
   let start = 0;
   const suffix = el.dataset.suffix || '';
   const step = (ts) => {
     if (!start) start = ts;
-    const progress = Math.min((ts - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
+    const p = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
     el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
-    if (progress < 1) requestAnimationFrame(step);
+    if (p < 1) requestAnimationFrame(step);
     else el.textContent = target.toLocaleString() + suffix;
   };
   requestAnimationFrame(step);
 }
 
-const mObs = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target;
-      const n = parseInt(el.textContent.replace(/[^0-9]/g, ''));
-      if (el.textContent.includes('+')) el.dataset.suffix = '+';
-      if (n > 0) animNum(el, n);
+const mObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      // Skip elements marked as no-count (text values like "1.58M", "4 as PI")
+      if (el.hasAttribute('data-nocount')) { mObs.unobserve(el); return; }
+      const raw = el.textContent.trim();
+      const num = parseInt(raw.replace(/[^0-9]/g, ''));
+      if (raw.includes('+')) el.dataset.suffix = '+';
+      if (num > 0 && !isNaN(num)) animNum(el, num);
       mObs.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.hero-metric .number, .stat-cell .val').forEach(el => {
+
+document.querySelectorAll('.hero-metric .number, .stat-cell .val').forEach(function(el) {
+  if (el.hasAttribute('data-nocount')) return;
   if (/^\d/.test(el.textContent.replace(/[,+~]/g, ''))) mObs.observe(el);
 });
-
-// ── Google Scholar Live Fetch ──
-const GS_USER = 'ubl6WkoAAAAJ';
-const GS_URL = `https://scholar.google.com/citations?user=${GS_USER}&hl=en`;
-const statusEl = document.getElementById('gs-status');
-const statusText = document.getElementById('gs-status-text');
-
-function updateMetrics(data) {
-  const fields = [
-    { id: 'gs-citations', value: data.citations, suffix: '+' },
-    { id: 'gs-hindex', value: data.hindex, suffix: '' },
-    { id: 'gs-i10', value: data.i10, suffix: '' },
-  ];
-  fields.forEach(f => {
-    const el = document.getElementById(f.id);
-    if (el && f.value) {
-      el.dataset.suffix = f.suffix;
-      animNum(el, f.value);
-    }
-  });
-  // Update total publications if available
-  if (data.articles) {
-    const pubEl = document.getElementById('gs-pubs');
-    if (pubEl) { pubEl.dataset.suffix = '+'; animNum(pubEl, data.articles); }
-  }
-  statusEl.classList.remove('loading');
-  statusEl.classList.remove('error');
-  statusText.textContent = 'Live from Google Scholar · Updated just now';
-}
-
-function showFallback(msg) {
-  statusEl.classList.remove('loading');
-  statusEl.classList.add('error');
-  statusText.textContent = msg || 'Using cached metrics';
-}
-
-// Strategy 1: Fetch via CORS proxy (allorigins)
-async function fetchViaProxy() {
-  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(GS_URL)}`;
-  const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
-  if (!resp.ok) throw new Error('Proxy failed');
-  const html = await resp.text();
-
-  // Parse the metrics table from Google Scholar HTML
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-
-  // The stats table has id "gsc_rsb_st"
-  const table = doc.getElementById('gsc_rsb_st');
-  if (!table) throw new Error('Table not found');
-
-  const rows = table.querySelectorAll('tr');
-  let citations = null, hindex = null, i10 = null;
-
-  rows.forEach(row => {
-    const cells = row.querySelectorAll('td');
-    if (cells.length >= 2) {
-      const label = cells[0].textContent.trim().toLowerCase();
-      const allVal = parseInt(cells[1].textContent.trim());
-      if (label.includes('citation')) citations = allVal;
-      else if (label.includes('h-index')) hindex = allVal;
-      else if (label.includes('i10')) i10 = allVal;
-    }
-  });
-
-  // Count articles
-  const articleRows = doc.querySelectorAll('.gsc_a_tr');
-  const articles = articleRows.length || null;
-
-  if (!citations && !hindex) throw new Error('No data parsed');
-  return { citations, hindex, i10, articles };
-}
-
-// Strategy 2: Fetch from Semantic Scholar API
-async function fetchFromSemanticScholar() {
-  const resp = await fetch(
-    `https://api.semanticscholar.org/graph/v1/author/search?query=wadii+boulila&fields=citationCount,hIndex,paperCount`,
-    { signal: AbortSignal.timeout(6000) }
-  );
-  if (!resp.ok) throw new Error('S2 API failed');
-  const data = await resp.json();
-  if (!data.data || data.data.length === 0) throw new Error('No results');
-
-  // Find the right author (most citations)
-  const author = data.data.reduce((a, b) => (a.citationCount > b.citationCount ? a : b));
-  return {
-    citations: author.citationCount,
-    hindex: author.hIndex,
-    i10: null, // S2 doesn't provide i10
-    articles: author.paperCount
-  };
-}
-
-// Strategy 3: Fetch from OpenAlex API
-async function fetchFromOpenAlex() {
-  const resp = await fetch(
-    `https://api.openalex.org/authors?search=wadii%20boulila&per_page=1&mailto=wadii.boulila@gmail.com`,
-    { signal: AbortSignal.timeout(6000) }
-  );
-  if (!resp.ok) throw new Error('OpenAlex failed');
-  const data = await resp.json();
-  if (!data.results || data.results.length === 0) throw new Error('No results');
-
-  const author = data.results[0];
-  return {
-    citations: author.cited_by_count,
-    hindex: author.summary_stats?.h_index,
-    i10: author.summary_stats?.i10_index,
-    articles: author.works_count
-  };
-}
-
-// Run fetch strategies with fallback chain
-(async function loadScholarMetrics() {
-  try {
-    const data = await fetchViaProxy();
-    updateMetrics(data);
-    return;
-  } catch(e) { console.log('Proxy fetch failed:', e.message); }
-
-  try {
-    const data = await fetchFromOpenAlex();
-    updateMetrics(data);
-    statusText.textContent = 'Live from OpenAlex · Updated just now';
-    return;
-  } catch(e) { console.log('OpenAlex failed:', e.message); }
-
-  try {
-    const data = await fetchFromSemanticScholar();
-    updateMetrics(data);
-    statusText.textContent = 'Live from Semantic Scholar · Updated just now';
-    return;
-  } catch(e) { console.log('Semantic Scholar failed:', e.message); }
-
-  // All strategies failed — use hardcoded values
-  showFallback('Using cached metrics · Visit Google Scholar for latest');
-})();
 </script>
 </body>
 </html>
